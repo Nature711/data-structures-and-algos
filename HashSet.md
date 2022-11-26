@@ -19,3 +19,6 @@
 
 ## Example questions
 - [Contains Duplicates](https://github.com/Nature711/my-leetcode-notes/tree/master/0217-contains-duplicate)
+
+## Useful tricks
+- the return value of the ```add(T ele)``` method gives info about whether an element is added to the set or not --> deduce whether the element is already present or not --> deduce whether there's duplicate 
