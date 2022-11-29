@@ -1,4 +1,4 @@
-## Approaches
+## Algos
 
 ### Recursive
 
@@ -57,3 +57,22 @@ head                 p
 
 - [Merge two sorted lists](https://github.com/Nature711/my-leetcode-notes/blob/master/0021-merge-two-sorted-lists/NOTES.md)
 - [Reverse linked list](https://github.com/Nature711/my-leetcode-notes/blob/master/0206-reverse-linked-list/NOTES.md)
+
+## Fast and slow pointer 
+
+- idea: use 2 two pointers -- fast & slow, to traverse the linked list; fast traverses twice as fast as slow
+- implementation
+```
+while (fast != null && fast.next != null) {
+   fast = fast.next.next;
+   slow = slow.next;
+}
+```
+- applications:
+  - find middle node -- [Middle of the linked list](https://leetcode.com/problems/middle-of-the-linked-list/solution/)
+  - cycle detection -- [Linked list cycle](https://github.com/Nature711/my-leetcode-notes/blob/master/Linked-list-cycle.md)
+
+## Dummy node
+
+- treating the dummy head with the invariant that it is always pointing to the current correct answer makes **dealing with edge cases** in linked lists a lot easie
+
