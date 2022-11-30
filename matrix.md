@@ -29,3 +29,7 @@ public int[][] matrixReshape(int[][] mat, int r, int c) {
     }
 }
 ```
+
+## Example questions
+- [Search in 2D matrix](https://leetcode.com/problems/search-a-2d-matrix/?envType=study-plan&id=data-structure-i)
+- [Reshape the matrix](https://leetcode.com/problems/reshape-the-matrix/?envType=study-plan&id=data-structure-i)
