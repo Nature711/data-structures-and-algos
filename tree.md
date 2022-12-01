@@ -130,4 +130,4 @@ print(root)
 
 # N-ary tree
 - similar to binary tree
-- to visit its children, instead of 
+- to visit its children, instead of doing ```node.left``` and ```node.right```, we do ```for (Node child: node.children) ...```
