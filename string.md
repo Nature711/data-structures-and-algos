@@ -32,6 +32,22 @@ arr['a' - 97] = xxx; --> arr[0] will be filled with value xxx
 arr['z' - 97] = yyy; --> arr[25] will be filled with value yyy
 ```
 
+### applications
+- when we want to count occurences of each character in a string and store such info
+- intuitive approach: use a hashmap -- key is character, value is its occurences
+```
+HashMap<Character, Integer> map = new HashMap<>();
+for (char c: string.toCharArray) map.put(c, map.get(c, map.getOrDefault(c, 0) + 1);
+```
+- optimized approach: use a constant size int array -- value at index i represents the occurence of the character ```(char) i```
+```
+int[] map = new int[26];
+for (char c: string.toCharArray) map[c - 'a']++;
+```
+
 ## Example questions
 - [Implement Trie](https://leetcode.com/problems/implement-trie-prefix-tree/)
 
+## Space optimization
+- count occurences of character in one string
+- instead of using 2 hashmaps, we 
