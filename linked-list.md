@@ -58,6 +58,13 @@ head                 p
 - [Merge two sorted lists](https://github.com/Nature711/my-leetcode-notes/blob/master/0021-merge-two-sorted-lists/NOTES.md)
 - [Reverse linked list](https://github.com/Nature711/my-leetcode-notes/blob/master/0206-reverse-linked-list/NOTES.md)
 
+### Divide & Conquer
+
+- splits the linked list into 2 equal halves; recursively solve each half
+- note: after finding the middle node, we need to ***EXPLICLITY cut the list into 2 halves by setting the first half's last node's next pointer to NULL***
+
+- example: [Sort list](https://github.com/Nature711/my-leetcode-notes/blob/master/0148-sort-list/NOTES.md)
+
 ## Fast and slow pointer 
 
 - idea: use 2 two pointers -- fast & slow, to traverse the linked list; fast traverses twice as fast as slow
