@@ -43,6 +43,9 @@
     }
 ```
 
+- example:
+    - [First Bad Version](https://leetcode.com/problems/first-bad-version/)
+
 ### 3. find last occurance
 - loop condition: ```low < high```
 - shrinking: ```low = mid```, ```high = mid - 1```
