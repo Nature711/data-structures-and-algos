@@ -32,7 +32,7 @@ arr['a' - 97] = xxx; --> arr[0] will be filled with value xxx
 arr['z' - 97] = yyy; --> arr[25] will be filled with value yyy
 ```
 
-### applications
+### Applications
 - when we want to count occurences of each character in a string and store such info
 - intuitive approach: use a hashmap -- key is character, value is its occurences
 ```
@@ -45,9 +45,19 @@ int[] map = new int[26];
 for (char c: string.toCharArray) map[c - 'a']++;
 ```
 
-## Example questions
+### Example questions
 - [Implement Trie](https://leetcode.com/problems/implement-trie-prefix-tree/)
 
 ## Space optimization
-- count occurences of character in one string
-- instead of using 2 hashmaps, we 
+- count occurences of character in one string, validate if another string contains the same set of charactcers, or with the same number of occurences
+- instead of using 2 maps to store the info about 2 strings, we can use only 1 map:
+  - 1st iteration: iterate through one string to ***increment*** occurence
+  - 2nd iteration: iterate through the other string to ***decrement*** occurence
+  - at last: check if all the values in map are zero --> the two string ***cancel off*** each other
+
+### Example questions
+- [Valid Anagram](https://leetcode.com/problems/valid-anagram/)
+- [Ransom Note](https://leetcode.com/problems/ransom-note/?envType=study-plan&id=data-structure-i)
+
+
+
