@@ -12,7 +12,19 @@ for (int i = 0; i < m; i++){
 
 ## DFS
 
-### in matrix (4 directions)
+### basic struture
+- in main function:
+  - determine if it's single or multi source dfs problem
+  - call dfs as entry point
+- in dfs function:
+  - local work
+  - for each direction
+    - calculate next point
+    - check boundary and terminating conditions on next point
+    - if satisifed, perform dfs on next point
+    - mark next point as visited
+
+### template: dfs in matrix (4 directions)
 
 ```
 //global variables
@@ -42,6 +54,23 @@ public void dfs(int i, int j,...) {
 ```
 
 ## BFS 
+
+### basic struture
+- in main function:
+  - determine if it's single or multi source dfs problem
+  - initialize a queue
+  - add entry point into queue to kick-start the bfs search
+- while queue is not empty: 
+   - determine size of queue -- how many points we have for the current level
+   - do for ```size``` iterations: 
+      - poll an element from queue
+      - local work
+      - for each direction
+        - calculate next point
+        - check boundary and terminating conditions on next point
+        - if satisifed, add next point to queue
+        - mark next point as visited
+
 ```
 public int[][] bfs(int[][] mat) {
         int[][] directions = {{0,1},{1,0},{-1,0},{0,-1}};
@@ -76,6 +105,15 @@ public int[][] bfs(int[][] mat) {
     }
  ```
  
- ### note
+ ### note 1
+ - in search function / iteration
+  - local work
+  - for each direction
+    - calculate next point
+    - check boundary and terminating conditions on next point
+    - if satisifed, perform search on next point
+    - mark next point as visited (depending on implementions -- for some questions, the "local work" at each step is effectively marking a point as visited)
+ 
+ ### note 2
  - Binary tree level-order traveral is almost exactly the same as BFS, except that we don't need a ```visited``` array to keep track of whether a node is visited or not, since the "neighbors" of a node can only be its left (and) right child which is one level "below" it, and it's never possible to go back 
  
