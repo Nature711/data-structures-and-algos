@@ -1,11 +1,8 @@
 # Approaches
 
-## Recursive
-
-## Iterative
-
-
 # Traversal
+
+- basic implementations: recursive vs. iterative
 
 ## Level order
 - from left to right, level by level
@@ -57,27 +54,45 @@
 4   5   6
 ```
 - order: [1 2 4 5 3 6]
-- implementation: 
+### recursive 
+- pseudocode
 ``` 
 print(root)
 dfs(root.left)
 dfs(root.right)
 ```
-- code:
+- java code:
 ```
-class Solution {
+List<Integer> res = new ArrayList<>();
+public List<Integer> preorderTraversal(TreeNode root) {
+    dfs(root);
+    return res;
+}
+
+public void dfs(TreeNode root) {
+    if (root == null) return;
+    res.add(root.val);
+    dfs(root.left);
+    dfs(root.right);
+}
+```
+### iterative
+```
+public List<Integer> preorderTraversal(TreeNode root) {
     List<Integer> res = new ArrayList<>();
-    public List<Integer> preorderTraversal(TreeNode root) {
-        dfs(root);
-        return res;
+    Stack<TreeNode> stack = new Stack<>();
+    TreeNode curr = root;
+
+    while (curr != null || !stack.isEmpty()) {
+        while (curr != null) {
+            stack.push(curr);
+            res.add(curr.val);
+            curr = curr.left;
+        }        
+        curr = stack.pop();
+        curr = curr.right;   
     }
-    
-    public void dfs(TreeNode root) {
-        if (root == null) return;
-        res.add(root.val);
-        dfs(root.left);
-        dfs(root.right);
-    }
+    return res;
 }
 ```
 
@@ -90,13 +105,13 @@ class Solution {
 4   5   6
 ```
 - order: [4 2 5 1 3 6]
-- recursive implementation: 
+### recursive
 ``` 
 dfs(root.left)
 print(root)
 dfs(root.right)
 ```
-- iterative implementation: 
+### iterative
 ```
 Stack<TreeNode> stack = new Stack<>();
 TreeNode curr = root;
@@ -121,7 +136,7 @@ while (curr != null || !stack.isEmpty()) {
 4   5   6
 ```
 - order: [4 5 2 6 3 1]
-- implementation: 
+### recursive
 ``` 
 dfs(root.left)
 dfs(root.right)
