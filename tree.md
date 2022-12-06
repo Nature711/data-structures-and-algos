@@ -1,5 +1,3 @@
-# Approaches
-
 # Traversal
 
 - basic implementations: recursive vs. iterative
@@ -113,17 +111,21 @@ dfs(root.right)
 ```
 ### iterative
 ```
-Stack<TreeNode> stack = new Stack<>();
-TreeNode curr = root;
+public List<Integer> inorderTraversal(TreeNode root) {
+    List<Integer> res = new ArrayList<>();
+    Stack<TreeNode> stack = new Stack<>();
+    TreeNode curr = root;
 
-while (curr != null || !stack.isEmpty()) {
-    while (curr != null) {
-        stack.push(curr);
-        curr = curr.left;
+    while (curr != null || !stack.isEmpty()) {
+        while (curr != null) {
+            stack.push(curr);
+            curr = curr.left;
+        }        
+        curr = stack.pop();
+        res.add(curr.val);
+        curr = curr.right;   
     }
-    TreeNode popped = stack.pop();
-    nodes.add(popped.val);
-    curr = popped.right;
+    return res;
 }
 ```
 
@@ -142,6 +144,48 @@ dfs(root.left)
 dfs(root.right)
 print(root)
 ```
+### iterative
+```
+   public List<Integer> postorderTraversal(TreeNode root) {
+          List<Integer> res = new ArrayList<>();
+          Stack<TreeNode> stack = new Stack<>();
+          Set<TreeNode> peeked = new HashSet<>();
+          TreeNode curr = root;
+
+          while (curr != null || !stack.isEmpty()) {
+              while (curr != null) {
+                  stack.push(curr);
+                  curr = curr.left;
+              }        
+              curr = stack.peek();
+              if (!peeked.add(curr)) {
+                  res.add(stack.pop().val);    
+                  curr = null;
+              } else curr = curr.right;
+          }
+          return res;
+    }
+ ```
+ 
+ ![image](https://user-images.githubusercontent.com/77217430/205809998-b9c84680-e24f-40a3-89a6-830d014f96bc.png)
+
+
+# Classic recursion problems
+
+### find max tree depth
+- current node asks its left and right child about their maxDepth, choose greater one, then add itself to depth
+- base case: current node is null --> depth == 0
+```
+public int maxDepth(TreeNode root) {
+    if (root == null) return 0; 
+    return 1 + Math.max(maxDepth(root.left), maxDepth(root.right));
+}
+```
+
+### symmetric tree
+
+
+
 
 # N-ary tree
 - similar to binary tree
