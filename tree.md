@@ -183,9 +183,23 @@ public int maxDepth(TreeNode root) {
 ```
 
 ### symmetric tree
+- helper function takes in 2 trees and return if they're symmetric
+- base case: both tree are null --> symmetric; one tree is null and the other is not --> non-symmetric
+- Two trees are a mirror reflection of each other if:
+    - Their two roots have the same value.
+    - The right subtree of each tree is a mirror reflection of the left subtree of the other tree.
+```
+public boolean isSymmetric(TreeNode root) {
+    if (root == null) return true;
+    return isSymmetricHelper(root.left, root.right);
+}
 
-
-
+public boolean isSymmetricHelper(TreeNode t1, TreeNode t2) {
+    if (t1 == null && t2 == null) return true;
+    if (t1 == null && t2 != null || t1 != null && t2 == null) return false;
+    return t1.val == t2.val && isSymmetricHelper(t1.left, t2.right) && isSymmetricHelper(t1.right, t2.left); 
+}
+```
 
 # N-ary tree
 - similar to binary tree
