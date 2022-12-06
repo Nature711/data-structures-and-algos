@@ -1,3 +1,16 @@
+# Overview
+
+## Problem feature
+- **optimal substructure** -- optimal solution of the current problem is based on the optimal solution to the subproblems
+- **overlapping subproblem** -- solutions to the subproblems are reused during computation of many "bigger" problems
+
+## Common approach
+- define dp array 
+- establish connection between the current problem ```dp[i]``` with the previously computed subproblems
+- note: whenever we make use of a subproblem ```dp[j]```, must make sure it already holds the final answer (i.e., won't be updated later) 
+- take note of how many subproblems each problem depends on
+  - if each problem ```dp[i]``` only depends on its previous subproblem ```dp[i - 1]``` (or a constant number of its subproblems) --> can optimize space complexity to O(1)
+
 ## Fib
 ![image](https://user-images.githubusercontent.com/77217430/205531739-70d9fe2e-5d7d-4887-992c-94359127c905.png)
 
