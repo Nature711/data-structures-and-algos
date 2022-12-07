@@ -201,6 +201,17 @@ public boolean isSymmetricHelper(TreeNode t1, TreeNode t2) {
 }
 ```
 
+## invert binary tree
+```
+public TreeNode invertTree(TreeNode root) {
+    if (root == null) return null;
+    TreeNode oldLeft = root.left;
+    root.left = invertTree(root.right);
+    root.right = invertTree(oldLeft);
+    return root;
+}
+```
+
 # N-ary tree
 - similar to binary tree
 - to visit its children, instead of doing ```node.left``` and ```node.right```, we do ```for (Node child: node.children) ...```
