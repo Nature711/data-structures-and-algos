@@ -7,7 +7,8 @@ Binary Search Tree is a binary tree where the key in each node is
 - less than any key in the right sub-tree
 
 ### Traversal
-- **inorder** traversal (left -> root -> right) prints the BST as an array **sorted in ascending order**
+- **inorder** traversal (left -> root -> right) of BST yields an array **sorted in ascending order**
+ - application: [Two Sum - Input as BST](https://leetcode.com/problems/two-sum-iv-input-is-a-bst/solution/)
 
 
 ## Search
