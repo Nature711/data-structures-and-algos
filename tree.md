@@ -211,7 +211,10 @@ public TreeNode invertTree(TreeNode root) {
     return root;
 }
 ```
-
+# Lowest common ancestor (LCA)
+- [LCA in BST](https://github.com/Nature711/my-leetcode-notes/blob/master/0235-lowest-common-ancestor-of-a-binary-search-tree/NOTES.md)
+- [LCA in binary tree](https://github.com/Nature711/my-leetcode-notes/blob/master/0236-lowest-common-ancestor-of-a-binary-tree/NOTES.md)
+    - [video explanation](https://www.youtube.com/watch?v=13m9ZCB8gjw)
 # N-ary tree
 - similar to binary tree
 - to visit its children, instead of doing ```node.left``` and ```node.right```, we do ```for (Node child: node.children) ...```
