@@ -42,6 +42,30 @@ class Trie {
         }
         return true;
     }
+    
+   public String findLCP() {
+        StringBuilder sb = new StringBuilder();
+        Node currNode = root;
+        while (currNode != null) {
+            int count = 0, next = -1, flag = 0;
+            char c = 'R';
+            for (int i = 0; i < 26; i++) {
+                if (currNode.children[i] != null) {
+                    next = i;
+                    c = (char) (i + 97);
+                    count++;
+                    if (currNode.children[i].isTerminating) flag = 1;
+                }
+                if (count > 1) return sb.toString();
+            }
+
+            if (count == 0) return sb.toString();
+            else sb.append(c);
+            if (flag == 1) break;
+            currNode = currNode.children[next];
+        }
+        return sb.toString();
+    }
 }
 
 class Node {
