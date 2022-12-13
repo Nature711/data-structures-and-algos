@@ -1,6 +1,8 @@
-## Use case: anything related to prefix:
+## Use case: anything related to prefix
 - longest common prefix
 - prefix search
+
+![image](https://user-images.githubusercontent.com/77217430/207367177-ec275aec-7427-4b79-8c50-cd7e15de45b1.png)
 
 ## Implementation
 ```
@@ -50,8 +52,11 @@ class Node {
     public Node() {this.c = 'R';}
     public Node(char c) {this.c = c;}
 }
+```
+![image](https://user-images.githubusercontent.com/77217430/207367288-0260f26b-b131-43f4-9223-c1622b84c494.png)
+![image](https://user-images.githubusercontent.com/77217430/207367318-923147f8-89fe-4596-a266-4253cdc6a6ef.png)
 
 ## Example questions
 - [Implementing trie](https://leetcode.com/problems/implement-trie-prefix-tree/)
 - [Longest common prefix](https://leetcode.com/problems/longest-common-prefix/solution/)
-- [Word Search II](https:)//leetcode.com/problems/word-search-ii/)
+- [Word Search II](https://leetcode.com/problems/word-search-ii/)
