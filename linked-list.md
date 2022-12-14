@@ -82,4 +82,6 @@ while (fast != null && fast.next != null) {
 ## Dummy node
 
 - treating the dummy head with the invariant that it is always pointing to the current correct answer makes **dealing with edge cases** in linked lists a lot easie
-
+- application
+  - [Delete the Middle Node of a Linked List](https://leetcode.com/problems/delete-the-middle-node-of-a-linked-list/)
+  - [Remove Nth Node From End of List](https://leetcode.com/problems/remove-nth-node-from-end-of-list/)
