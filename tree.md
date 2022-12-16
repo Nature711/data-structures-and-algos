@@ -215,6 +215,15 @@ public TreeNode invertTree(TreeNode root) {
 - [LCA in BST](https://github.com/Nature711/my-leetcode-notes/blob/master/0235-lowest-common-ancestor-of-a-binary-search-tree/NOTES.md)
 - [LCA in binary tree](https://github.com/Nature711/my-leetcode-notes/blob/master/0236-lowest-common-ancestor-of-a-binary-tree/NOTES.md)
     - [video explanation](https://www.youtube.com/watch?v=13m9ZCB8gjw)
+
+# Height-balanced tree
+## Conditions: 
+1. difference between the left and right subtree for any node is not more than one: ```Math.abs(height(node.left) - height(node.right)) <= 1```
+2. the left subtree is balanced: ```isBalanced(node.left```
+3. the right subtree is balanced: ```isBalanced(node.right)```
+## Algo 
+- recursive / iterative
+ 
 # N-ary tree
 - similar to binary tree
 - to visit its children, instead of doing ```node.left``` and ```node.right```, we do ```for (Node child: node.children) ...```
