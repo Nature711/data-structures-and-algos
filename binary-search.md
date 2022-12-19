@@ -157,3 +157,24 @@ public int searchRotated(int[] nums, int target) {
     return -1;
 }
 ```
+
+### Application: find min element in rotated sorted array
+```
+public int findMinIndex(int[] nums) {
+    int low = 0, high = nums.length - 1;
+    if (low == high || nums[low] < nums[high]) return 0;
+
+    while (low < high) {
+        int mid = low + (high - low) / 2;
+        if (nums[mid] > nums[mid + 1]) return mid + 1;
+        if (nums[low] <= nums[mid]) {
+            //left half sorted; turning point in right half
+            low = mid;
+        } else {
+            //right half sorted; turning point in left half
+            high = mid;
+        }
+    }
+    return -1;
+}
+```
