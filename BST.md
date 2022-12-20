@@ -10,6 +10,24 @@ Binary Search Tree is a binary tree where the key in each node is
 - **inorder** traversal (left -> root -> right) of BST yields an array **sorted in ascending order**
  - application: [Two Sum - Input as BST](https://leetcode.com/problems/two-sum-iv-input-is-a-bst/solution/)
 
+### Sorted array to BST
+- find array mid --> set as root
+- recursively construct left and right subtree using elements to the left of mid and to the right of mid
+```
+public TreeNode sortedArrayToBST(int[] nums) {
+       return helper(nums, 0, nums.length - 1);
+   }
+
+   public TreeNode helper(int[] nums, int low, int high) {
+       if (low > high) return null;
+       int mid = low + (high - low) / 2;
+       TreeNode root = new TreeNode(nums[mid]);
+       root.left = helper(nums, low, mid - 1);
+       root.right = helper(nums, mid + 1, high);
+       return root;
+   }
+```
+
 
 ## Search
 
@@ -78,3 +96,5 @@ public TreeNode insertIntoBST(TreeNode root, int val) {
     return root;
 }
 ```
+
+## Sorted
