@@ -1,12 +1,10 @@
-## Properties
-
-### Definition
+## Definition
 
 Binary Search Tree is a binary tree where the key in each node is 
 - greater than any key in the left sub-tree, and
 - less than any key in the right sub-tree
 
-### Traversal
+## Traversal
 - **inorder** traversal (left -> root -> right) of BST yields an array **sorted in ascending order**
  - application: [Two Sum - Input as BST](https://leetcode.com/problems/two-sum-iv-input-is-a-bst/solution/)
 
@@ -28,7 +26,26 @@ public TreeNode helper(int[] nums, int low, int high) {
 }
 ```
 
+### [K-th smallest element in BST](https://leetcode.com/problems/kth-smallest-element-in-a-bst/?envType=study-plan&id=level-2)
+```
+ int res = -1, count;
+ public int kthSmallest(TreeNode root, int k) {
+     count = k;
+     preorder(root);
+     return res;
+ }
 
+ public void preorder(TreeNode root) {
+     if (res != -1 || root == null) return;
+     preorder(root.left);
+     count--;
+     if (count == 0) res = root.val;
+     preorder(root.right);
+ }
+```
+
+
+# Operations
 ## Search
 
 - Time complexity: O(H) 
