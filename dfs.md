@@ -1,3 +1,18 @@
+
+## DFS
+
+### basic struture
+- in main function:
+  - determine if it's single or multi source dfs problem
+  - call dfs as entry point
+- in dfs function:
+  - local work
+  - for each direction
+    - calculate next point
+    - check boundary and terminating conditions on next point
+    - if satisifed, perform dfs on next point
+    - mark next point as visited
+
 ## Matrix (4 directions)
 ```
 main(matrix) {
@@ -31,7 +46,6 @@ dfs(i, j, matrix) {
 - [Max Area of Island](https://leetcode.com/problems/max-area-of-island/)
   - DFS returns the size of area 
   - Find the max area after DFSing all areas
-
 
 ## States marking
 
