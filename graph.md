@@ -105,6 +105,10 @@ public int[][] bfs(int[][] mat) {
     }
  ```
  
+ ### multi-source BFS
+ - all nodes at same level are considered to be explored **"at the same tick"**
+ - example: [Rotting orange](https://leetcode.com/problems/rotting-oranges/)
+ 
  ### note 1
  - in search function / iteration
   - local work
