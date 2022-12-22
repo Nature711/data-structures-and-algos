@@ -72,7 +72,7 @@ function visit(node n)
  ```
  
  ### Examples
- - [Course Schedule](https://leetcode.com/problems/course-schedule/)
+ - [Course Schedule](https://github.com/Nature711/my-leetcode-notes/blob/master/0207-course-schedule/NOTES.md)
  
  ## Variant: Topological sort
  
@@ -93,3 +93,7 @@ if graph has edges then
 else 
     return L   (a topologically sorted order)
 ```
+
+ ### Examples
+ - [Course Schedule II](https://github.com/Nature711/my-leetcode-notes/blob/master/0210-course-schedule-ii/NOTES.md/)
+
