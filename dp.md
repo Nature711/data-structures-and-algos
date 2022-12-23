@@ -89,3 +89,5 @@ HashMap<Integer, Integer> memo = new HashMap<>();
 ## Classical questions
 - [Min cost climbing stairs](https://github.com/Nature711/my-leetcode-notes/blob/master/0746-min-cost-climbing-stairs/NOTES.md)
 - [Unique paths](https://github.com/Nature711/my-leetcode-notes/blob/master/0062-unique-paths/NOTES.md)
+- [House Robber](https://leetcode.com/problems/house-robber/)
+- [Coin Change](https://leetcode.com/problems/coin-change/)
