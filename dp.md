@@ -91,3 +91,11 @@ HashMap<Integer, Integer> memo = new HashMap<>();
 - [Unique paths](https://github.com/Nature711/my-leetcode-notes/blob/master/0062-unique-paths/NOTES.md)
 - [House Robber](https://leetcode.com/problems/house-robber/)
 - [Coin Change](https://leetcode.com/problems/coin-change/)
+
+## DP with array
+- usually, dp[i] represents some optimal (e.g., max product, min sum...) that is obtained from subarray 0...i
+- to be able to draw connection between dp[i] (current problem) and previous subproblems (e.g., dp[i - 1]), we define the dp array in such a way that the optimal solution recorded in dp[i] requires using the i-th array element (i.e., nums[i] is involved)
+- sometimes the globally optimal is not necessarily in dp[n], but we need to record a global optimal during computing from dp[0] to dp[n]
+
+### example questions 
+- [Maximum product subarray](https://leetcode.com/problems/maximum-product-subarray/)
