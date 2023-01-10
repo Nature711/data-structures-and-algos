@@ -97,5 +97,48 @@ HashMap<Integer, Integer> memo = new HashMap<>();
 - to be able to draw connection between dp[i] (current problem) and previous subproblems (e.g., dp[i - 1]), we define the dp array in such a way that the optimal solution recorded in dp[i] requires using the i-th array element (i.e., nums[i] is involved)
 - sometimes the globally optimal is not necessarily in dp[n], but we need to record a global optimal during computing from dp[0] to dp[n]
 
+## Iterating over 2D array
+### row wise 
+```
+for (int i = 0; i < n; i++) {
+  for (int j = 0; j < n; j++) {
+     //dp[i][j] = ...
+  }
+}
+```
+![image](https://user-images.githubusercontent.com/77217430/211559553-4786bb1a-c742-4af0-809d-826f2c435a9f.png)
+
+### row wise, half of matrix
+```
+for (int i = 0; i < n; i++) {
+  for (int j = i; j < n; j++) {
+     //dp[i][j] = ...
+  }
+}
+```
+![image](https://user-images.githubusercontent.com/77217430/211559606-110138d2-2fac-45bd-8d01-4408ce566ff9.png)
+
+### row reverse
+```
+for (int i = n - 1; i >= 0; i--) {
+  for (int j = i; j < n; j++) {
+     //dp[i][j] = ...
+  }
+}
+```
+![image](https://user-images.githubusercontent.com/77217430/211559765-2264265a-d2cd-4bb5-a53c-567f51b1023d.png)
+
+### diagonally, half of matrix
+```
+ for (int gap = 0; gap < n; gap++) {
+    for (int i = 0, j = i + gap; j < n; i++, j++) {
+        //dp[i][j] = ...
+    }
+ }
+```
+![image](https://user-images.githubusercontent.com/77217430/211559848-872bc164-05b9-4b80-ab4c-e20231b6b4e8.png)
+
+
 ### example questions 
 - [Maximum product subarray](https://leetcode.com/problems/maximum-product-subarray/)
+- [Longest Palindrome Substring](https://leetcode.com/submissions/detail/875423130/)
