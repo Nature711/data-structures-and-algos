@@ -240,3 +240,49 @@ public ListNode removeNthFromEnd(ListNode head, int n) {
                          ^           ^ 
                          to refer    to remove
  ```
+
+## Merge sorted lists
+### [Merge two sorted lists](https://leetcode.com/problems/merge-two-sorted-lists/)
+```
+public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
+        ListNode dummy = new ListNode();
+        ListNode curr = dummy;
+        
+        while (list1 != null && list2 != null) {
+            if (list1.val < list2.val) {
+                curr.next = list1;
+                list1 = list1.next;
+            } else {
+                curr.next = list2;
+                list2 = list2.next;
+            }
+            curr = curr.next;
+        }
+        
+        if (list1 != null) curr.next = list1;
+        if (list2 != null) curr.next = list2;
+        
+        return dummy.next;
+
+    }
+```
+
+### [Merge k sorted lists](https://leetcode.com/problems/merge-k-sorted-lists/?envType=study-plan&id=level-3)
+```
+ public ListNode mergeKLists(ListNode[] lists) {
+        return mergeKHelper(lists, 0, lists.length - 1);
+    }
+    
+    public ListNode mergeKHelper(ListNode[] lists, int low, int high) {
+        if (low > high) return null;
+        if (low == high) return lists[low];
+        if (low == high - 1) return mergeTwoLists(lists[low], lists[high]);
+        int mid = low + (high - low) / 2;
+        
+        ListNode firstHalf = mergeKHelper(lists, low, mid);
+        ListNode secondHalf = mergeKHelper(lists, mid + 1, high);
+        
+        return mergeTwoLists(firstHalf, secondHalf);
+    }
+ ```
+
