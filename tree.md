@@ -43,6 +43,35 @@
     }
 ```
 
+### bonus: DFS implementation
+- during the DFS traversal, we maintain the results in a global array that is **indexed by the level**
+    - i.e. the element ```array[level]``` would contain all the nodes that are at the same level
+- global array would then be referred and updated at each step of DFS
+- dfs function keeps track of the current level
+    - local work: insert the current root to the specific element in global array (i.e., the list that keeps track of all nodes at that level)
+    - recursive call: dfs(left), dfs(right)
+```
+List<List<Integer>> res = new ArrayList<>();
+public List<List<Integer>> levelOrder(TreeNode root) {
+    dfs(root, 0);
+    return res;
+}
+
+public void dfs(TreeNode root, int level) {
+    if (root == null) return;
+
+    if (level >= res.size()) {
+        List<Integer> currLevel = new ArrayList<>();
+        currLevel.add(root.val);
+        res.add(level, currLevel);
+    } else {
+        res.get(level).add(root.val);
+    }
+    dfs(root.left, level + 1);
+    dfs(root.right, level + 1);
+}
+```
+
 ## Preoder 
 ```
     1
