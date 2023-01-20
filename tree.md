@@ -252,6 +252,9 @@ public TreeNode invertTree(TreeNode root) {
 3. the right subtree is balanced: ```isBalanced(node.right)```
 ## Algo 
 - recursive / iterative
+
+## Distance between tree nodes
+- [All Nodes Distance K in Binary Tree](https://github.com/Nature711/data-structures-and-algos/blob/master/common-problems/distance-k-nodes-in-tree.md)
  
 # N-ary tree
 - similar to binary tree
