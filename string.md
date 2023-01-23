@@ -60,4 +60,68 @@ for (char c: string.toCharArray) map[c - 'a']++;
 - [Ransom Note](https://leetcode.com/problems/ransom-note/?envType=study-plan&id=data-structure-i)
 
 
+## String manipulation 
 
+### String vs Char (in Java)
+|                    | String      | char |
+| ----------- | ----------- | ----------- |
+|     representation          |       double quote "a"    | single quote 'a'       |
+|     empty value         |        ```String s = " "```    | ```char c = ' '```    |
+|     related methods        |      ```s.substring(i, j)```  | ```s.charAt(idx)```  |
+
+
+### Number in string format
+- Conversion: ```Integer.valueOf()```
+- Check: pattern matching using regex
+
+```
+String nString = "8";
+Integer.valueOf(nString); //returns 8
+
+nString = "18";
+Integer.valueOf(nString); //returns 18
+
+Pattern pattern = Pattern.compile(".*[^0-9].*");
+pattern.matcher(nString).matches(); //returns true;
+nString = "abc";
+pattern.matcher(nString).matches(); //returns false;
+
+```
+- notes on ```Integer.valueOf()```
+  - when input string is not an integer --> throw exception
+    - e.g., ```Integer.valueOf("abc"); //NumberFormatException```
+  - when input is a ```char``` --> returns the corresponding unicode value
+    - e.g., ```Integer.valueOf('a'); //returns 97``` 
+  - ignores the zero padding in input string 
+    - e.g., ```Integer.valueOf('018'); //returns 18```
+
+
+### Number in Char format
+- conversion: ```Character.getNumericValue()``` 
+- check: ```Character.isDigit()```
+
+```
+String nString = "a1b2"
+
+Character.getNumericValue(nString.charAt(1)); //returns 1
+
+Character.getNumericValue(nString.charAt(0)); //throws exception
+
+Character.isDigit(nString.charAt(0)); //returns false;
+```
+
+### common mistake 
+- given a string in the form of: each letter followed by a number representing the occurences of this letter, output the uncompressed string
+--> can't simply assume chars are alternating between char & number -- what if a number has more than 1 digit, in which case it's represented by more than 1 char?
+- correct approach: once encounter a digit, keep iterating while we're still pointing at a digit, break only after we hit a non-digit
+```
+StringBuilder numSb = new StringBuilder();
+while (i < compressedString.length() && Character.isDigit(compressedString.charAt(i))) {
+    //keep appending while current char is still a digit
+    numSb.append(compressedString.charAt(i++));
+}
+int t = Integer.valueOf(numSb.toString());
+```
+- related questions:
+  - [Design Compressed String Iterator](https://leetcode.com/problems/design-compressed-string-iterator/)
+  - [Decode String](https://leetcode.com/problems/decode-string/)
