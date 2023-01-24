@@ -66,15 +66,15 @@
     }
 ```
 
-4. find closest
+### 4. find closest
 - loop condition: ```while (low < high - 1)``` -- make sure we're left with exactly 2 elements after exiting loop, then we can compare which one is closer to target
 ```
    public int searchFirst(int[] nums, int target) {
         int low = 0, high = nums.length - 1;
         while (low < high - 1) {
             int mid = low + (high - low) / 2;
-            if (nums[mid] < target) high = mid;
-            else left = mid;
+            if (nums[mid] < target) low = mid;
+            else high = mid;
         }
         //at this point, low == high - 1
         if (nums[high] < target) return high;
