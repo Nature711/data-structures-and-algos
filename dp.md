@@ -138,7 +138,19 @@ for (int i = n - 1; i >= 0; i--) {
 ```
 ![image](https://user-images.githubusercontent.com/77217430/211559848-872bc164-05b9-4b80-ab4c-e20231b6b4e8.png)
 
-
 ### example questions 
 - [Maximum product subarray](https://leetcode.com/problems/maximum-product-subarray/)
 - [Longest Palindrome Substring](https://leetcode.com/submissions/detail/875423130/)
+
+## Two-pass DP
+- problem: in a matrix, dp value of current cell (i, j) depends on the 4 adjacent neighbors (i + 1, j), (i - 1, j), (i, j + 1), (i, j - 1)
+- such kind of problem must be solved in TWO-PASS!!
+![image](https://user-images.githubusercontent.com/77217430/215022303-090916db-7b57-4f3e-ae05-9e619d054952.png)
+
+- rationale behind: 
+  - In DP we can only use the values which are previously calculated. 
+  - When we are parsing from top left and coming down to bottom right, we can only use the values of above and left because only those two values are precomputed
+  - if we take right and down, those values are not yet computed, if we work with those values we will get suboptimal answer
+- example: [01 Matrix](https://leetcode.com/problems/01-matrix/)
+
+
