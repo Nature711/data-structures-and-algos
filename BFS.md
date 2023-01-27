@@ -17,9 +17,10 @@
         - mark next point as visited
 
  ### multi-source BFS
- - all nodes at same level are considered to be explored **"at the same tick"**
+ 1. all nodes at same level are considered to be explored **"at the same tick"**
  - example: [Rotting orange](https://leetcode.com/problems/rotting-oranges/)
- 
+ 2. initialize queue with all possible start points, then start exploring from those points at the same time
+ - example: [01 Matrix](https://leetcode.com/problems/01-matrix/)
 
 ## One Time
 ```
