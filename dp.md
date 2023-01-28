@@ -151,6 +151,8 @@ for (int i = n - 1; i >= 0; i--) {
   - In DP we can only use the values which are previously calculated. 
   - When we are parsing from top left and coming down to bottom right, we can only use the values of above and left because only those two values are precomputed
   - if we take right and down, those values are not yet computed, if we work with those values we will get suboptimal answer
-- example: [01 Matrix](https://leetcode.com/problems/01-matrix/)
+- example: 
+  - [01 Matrix](https://leetcode.com/problems/01-matrix/)
+  - [Maximal Square](https://leetcode.com/problems/maximal-square/)
 
 
