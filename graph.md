@@ -36,3 +36,5 @@ for (int[] edge : edges) {
     neighbors.get(end).add(start);
 }
 ```
+- determine if node: ```i``` is a leaf: ```if (neighbors.get(i).size() == 1)```
+- get the only parent node of that leaf node: ```int neighbor = neighbors.get(leaf).iterator().next();```
