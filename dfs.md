@@ -105,3 +105,15 @@ else
 |    handles an explicit tree  | handles an implicit tree      |
 | the state of the node remains same after a path is explored so that it will not be explored again   | need to restore previous state of visited node, by making visited=false, after exploring current path     |
 |searching (reachability, etc) | pattern finding | 
+
+### Classic dfs problems
+- [Number of Islands](https://leetcode.com/problems/number-of-islands)
+- [Path Sum]((https://leetcode.com/problems/path-sum)
+
+### Classic backtracking problems
+- [Word Search](https://leetcode.com/problems/word-search/) -- very likely to be mistreated as a DFS problem (forgot to restore state after visiting)
+- [Subsets](https://leetcode.com/problems/subsets)
+- [Permutations](https://leetcode.com/problems/permutations)
+- [Path Sum II]((https://leetcode.com/problems/path-sum-ii)
+
+- [path sum series](https://github.com/Nature711/my-leetcode-notes/blob/master/path-sum-series.md)
