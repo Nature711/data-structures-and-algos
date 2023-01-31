@@ -97,3 +97,11 @@ else
  ### Examples
  - [Course Schedule II](https://github.com/Nature711/my-leetcode-notes/blob/master/0210-course-schedule-ii/NOTES.md/)
 
+## DFS vs Backtracking
+
+
+| DFS     | Backtracking |
+| ----------- | ----------- |
+|    handles an explicit tree  | handles an implicit tree      |
+| the state of the node remains same after a path is explored so that it will not be explored again   | need to restore previous state of visited node, by making visited=false, after exploring current path     |
+|searching (reachability, etc) | pattern finding | 
