@@ -48,3 +48,4 @@ const getLargestSumOfFiveConsecutiveElements = (arr) => {
 
 ## Example questions
 - [ Longest Repeating Character Replacement](https://leetcode.com/problems/longest-repeating-character-replacement/solution/)
+- [Minimum Swaps to group all 1s together](https://leetcode.com/problems/minimum-swaps-to-group-all-1s-together?envType=study-plan&id=data-structure-iii)
