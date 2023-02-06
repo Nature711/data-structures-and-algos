@@ -5,13 +5,20 @@
   - find missing numbers, i.e., the set difference between the "universe" (known) and input array (given)
   - requires us to establish the "universe", then iterating over input, finally see the leftovers
   - how to keep track of the "visited" / "unvisited" without extra space? 
+  
     --> can we do it in input array directly? 
+    
     --> what properties of input array can we leverage?
+    
         - all elements are positive
         - each element has a unique index in the range [0, n-1]
-    --> idea:
+ 
+   -  idea:
+    
         - once we encounter a number (i.e., nums[i]), we record it as visited by: MARKING nums[nums[i] - 1] as negative 
+        
         - insight: if a number (e.g., j), is missing from array, then nums[j - 1] will never be marked
+        
         - eventually as we reiterate over the input array, when we see a number (e.g., nums[k]) that's still positive, this means the number (k + 1) must be missing 
         
 
