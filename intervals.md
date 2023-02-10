@@ -36,6 +36,27 @@
     }
 ```
 
+### Non-overlapping intervals()
+- if ```invB``` comes after ```invA``` in the sorted intervals, and ```invB``` overlaps with ```invA``` (i.e., invB[0] < invA[1]), we need to remove one of them
+- which one to remove? the one with the greater ending point -- which is likely to overlap with more intervals in the future 
+- therefore the one remained is the one with smaller ending point, i.e., ```maxEnd``` is updated to ```min(maxEnd, intervals[i][1]);```
+```
+   public int eraseOverlapIntervals(int[][] intervals) {
+        Arrays.sort(intervals, (i1, i2) -> Integer.compare(i1[0], i2[0]));
+        int maxEnd = intervals[0][1];
+        int removeCount = 0;
+        for (int i = 1; i < intervals.length; i++) {
+            if (intervals[i][0] < maxEnd) {
+                removeCount++;
+                maxEnd = Math.min(maxEnd, intervals[i][1]);
+            } else {
+                maxEnd = intervals[i][1];
+            }
+        }
+        return removeCount;
+    }
+```
+
 
 ## Insert interval
 ```
