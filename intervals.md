@@ -1,5 +1,5 @@
 # Overlapping intervals
-## Strategies
+## [Strategies](https://leetcode.com/problems/minimum-number-of-arrows-to-burst-balloons/discuss/93735/A-Concise-Template-for-%22Overlapping-Interval-Problem%22)
 1. Sort intervals/pairs in increasing order of the start position.
 2. Scan the sorted intervals, and maintain an "active set" for overlapping intervals. At most times, we do not need to use an explicit set to store them. Instead, we just need to maintain several key parameters, e.g. the number of overlapping intervals (count), the minimum ending point among all overlapping intervals (minEnd).
 3. If the interval that we are currently checking overlaps with the active set, which can be characterized by cur.start > minEnd, we need to renew those key parameters or change some states.
@@ -36,7 +36,7 @@
     }
 ```
 
-### Non-overlapping intervals()
+### [Non-overlapping intervals](https://leetcode.com/submissions/detail/895315557/)
 - if ```invB``` comes after ```invA``` in the sorted intervals, and ```invB``` overlaps with ```invA``` (i.e., invB[0] < invA[1]), we need to remove one of them
 - which one to remove? the one with the greater ending point -- which is likely to overlap with more intervals in the future 
 - therefore the one remained is the one with smaller ending point, i.e., ```maxEnd``` is updated to ```min(maxEnd, intervals[i][1]);```
