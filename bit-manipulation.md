@@ -24,5 +24,60 @@ public static int hammingWeight(int n) {
     return count;
 }
 ```
-## [Single Number Series](https://github.com/Nature711/my-leetcode-notes/blob/master/single-number-bitwise.md)
+## Add Binary
 
+- when we perform the bitwise AND operation between two binary digits, we get a result of 1 only if both digits are 1. In this case, we need to carry a 1 to the next column. Shifting the result of the bitwise AND operation to the left by 1 bit is equivalent to multiplying it by 2, which effectively moves the carry to the next column.
+
+update sum
+```
+  101
++ 011
+-----
+  110   <- sum without carry (using bitwise XOR)
+```
+update carry
+```
+  101
++ 011
+-----
+  001   <- carry without sum (using bitwise AND)
+  
+  010   <- then shift left by 1 bit
+```
+while (carry is not ZERO)
+update sum
+```
+  110
++ 010
+-----
+  100   <- sum xor carry
+```
+update carry
+```
+  110
++ 010
+-----
+  010   <- temp and carry
+  
+  100   <- left shift by 1 bit
+```
+```
+import java.math.BigInteger;
+class Solution {
+    public String addBinary(String a, String b) {
+        
+        BigInteger aa = new BigInteger(a, 2);
+        BigInteger bb = new BigInteger(b, 2);
+        BigInteger sum = aa.xor(bb);
+        BigInteger carry = aa.and(bb).shiftLeft(1);
+        
+        while (!carry.equals(BigInteger.ZERO)) {
+            BigInteger temp = sum;
+            sum = sum.xor(carry);
+            carry = temp.and(carry).shiftLeft(1);
+        }
+        
+        return sum.toString(2);
+    }
+}
+```
