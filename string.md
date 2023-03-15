@@ -110,7 +110,7 @@ Character.getNumericValue(nString.charAt(0)); //throws exception
 Character.isDigit(nString.charAt(0)); //returns false;
 ```
 
-### common mistake 
+### common mistake 1
 - given a string in the form of: each letter followed by a number representing the occurences of this letter, output the uncompressed string
 --> can't simply assume chars are alternating between char & number -- what if a number has more than 1 digit, in which case it's represented by more than 1 char?
 - correct approach: once encounter a digit, keep iterating while we're still pointing at a digit, break only after we hit a non-digit
@@ -125,3 +125,34 @@ int t = Integer.valueOf(numSb.toString());
 - related questions:
   - [Design Compressed String Iterator](https://leetcode.com/problems/design-compressed-string-iterator/)
   - [Decode String](https://leetcode.com/problems/decode-string/)
+
+### common mistake 2
+- StringBuilder is passed / stored by reference, not by copy
+  - relevant problem: [Sum root to leaf numbers](https://leetcode.com/problems/sum-root-to-leaf-numbers/submissions/)
+  - the code below doesn't work: the old variable is not actually storing a copy of the StringBuilder object, but only a reference to it
+  - When you modify the currPath variable after storing it in old, any subsequent changes to currPath will also be reflected in old
+```
+public void backtrack(TreeNode root, StringBuilder currPath) {
+        if (root.left == null && root.right == null) {
+            int num = Integer.valueOf(currPath.toString());
+            nums.add(num);
+            return;
+        }
+        StringBuilder old = currPath;
+        
+        if (root.left != null) {
+            currPath.append(Integer.toString(root.left.val));
+            backtrack(root.left, currPath);
+            currPath = old;
+        }
+        if (root.right != null) {
+            currPath.append(Integer.toString(root.right.val));
+            backtrack(root.right, currPath);
+            currPath = old;
+        }
+    }
+```
+- fix1: make a copy of the StringBuilder object before storing it in old
+  - ```StringBuilder old = new StringBuilder(currPath.toString());```
+- fix2: directly remove last char from StringBuilder
+  - instead of using ```currPath = old```, use ```currPath.deleteCharAt(currPath.length() - 1)```
