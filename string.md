@@ -32,6 +32,14 @@ arr['a' - 97] = xxx; --> arr[0] will be filled with value xxx
 arr['z' - 97] = yyy; --> arr[25] will be filled with value yyy
 ```
 
+- property 3: convert int to char 
+```
+char charA = (char) 97; //charA == 'a'
+char charB = (char) 98; //charA == 'b'
+...
+char charA = (char) 122; //charA == 'z'
+```
+
 ### Applications
 - when we want to count occurences of each character in a string and store such info
 - intuitive approach: use a hashmap -- key is character, value is its occurences
