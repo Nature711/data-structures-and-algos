@@ -155,4 +155,26 @@ for (int i = n - 1; i >= 0; i--) {
   - [01 Matrix](https://leetcode.com/problems/01-matrix/)
   - [Maximal Square](https://leetcode.com/problems/maximal-square/)
 
+## Range Sum (2D)
+- Calculate the sum of the range defined by upper left corner (row1, col1) and lower right corner (row2, col2)
+
+![image](https://user-images.githubusercontent.com/77217430/229267502-277f1f51-0987-4bd5-8f09-0408f2261eac.png)
+
+### naive attempt
+- 4 parameters for a particular 2D range: (row1, col1, row2, col2) 
+--> store in 4D memo table
+- Time: O(1)
+- Space: O(n^4)
+
+### clever caching
+- fix upper left to (0,0) --> a 2D range can be defined using only 2 parameters (r, c) -- lower right corner
+- for each r, c -- precompute the range sum for the region defined by (r, c) as lower right corner (and (0,0) as upper left corner)
+- this is enough for us to compute sany region sum defined by upper left corner (row1, col1) and lower right corner (row2, col2): 
+![image](https://user-images.githubusercontent.com/77217430/229267755-5d2d6ec9-6e09-47c7-8307-d23ef2f01570.png)
+![image](https://user-images.githubusercontent.com/77217430/229267760-b7c58ff8-7f02-4567-8e41-48968101ad78.png)
+![image](https://user-images.githubusercontent.com/77217430/229267767-80213b25-06f4-463d-8819-ec959de8fee7.png)
+![image](https://user-images.githubusercontent.com/77217430/229267773-5c02d74d-0359-42d7-9d02-33264c500425.png)
+![image](https://user-images.githubusercontent.com/77217430/229267812-bd1c9e86-cf0e-4fdc-9981-9edf6f2da8ea.png)
+
+- related question: [number of ways of cutting a pizza](https://leetcode.com/problems/number-of-ways-of-cutting-a-pizza/)
 
