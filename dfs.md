@@ -96,6 +96,12 @@ else
 
  ### Examples
  - [Course Schedule II](https://github.com/Nature711/my-leetcode-notes/blob/master/0210-course-schedule-ii/NOTES.md/)
+ 
+ 
+ ### Application: Determine if a graph is bipartite
+ - idea: A bipartite graph is possible if the graph coloring is possible using two colors such that vertices in a set are colored with the same color.
+ - approach: BFS / DFS
+ - problem: [Is Graph Bipartite](https://leetcode.com/problems/is-graph-bipartite/)
 
 ## DFS vs Backtracking
 
