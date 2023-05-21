@@ -16,11 +16,18 @@
         - if satisifed, add next point to queue
         - mark next point as visited
 
- ### multi-source BFS
- 1. all nodes at same level are considered to be explored **"at the same tick"**
- - example: [Rotting orange](https://leetcode.com/problems/rotting-oranges/)
- 2. initialize queue with all possible start points, then start exploring from those points at the same time
- - example: [01 Matrix](https://leetcode.com/problems/01-matrix/)
+ ## multi-source BFS
+ - When you perform BFS from a set of points, it means that you consider all those points as starting points and perform BFS simultaneously from all those points. 
+ - i.e., in iteration 1, explore all neighbours of all the starting points; in iteration 2, explore all the neighbours of the points you reached in iteration 1, etc.
+ - useful when you want to find the shortest path from any of the starting points to a target.
+ - the path found this way will be optimal among all paths starting from any of the starting points.
+ - On the other hand, when you perform BFS many times, each time from a different starting point, you explore the graph separately from each starting point. This means you do a complete BFS from the first point, then reset everything, do a complete BFS from the second point, etc. 
+ - This type of search is useful when you need to find paths from each starting point separately, e.g., when you want to compare the paths or if the graph changes between searches. 
+ - However, performing BFS many times is usually more time-consuming than performing BFS from a set of points, because you may end up exploring the same areas of the graph multiple times
+ - example questions
+      - example: [Rotting orange](https://leetcode.com/problems/rotting-oranges/)
+      - [01 Matrix](https://leetcode.com/problems/01-matrix/)
+      - [Shortest Bridge](https://leetcode.com/problems/shortest-bridge/)
 
 ## One Time
 ```
