@@ -39,21 +39,25 @@
 ### [Non-overlapping intervals](https://leetcode.com/submissions/detail/895315557/)
 - if ```invB``` comes after ```invA``` in the sorted intervals, and ```invB``` overlaps with ```invA``` (i.e., invB[0] < invA[1]), we need to remove one of them
 - which one to remove? the one with the greater ending point -- which is likely to overlap with more intervals in the future 
-- therefore the one remained is the one with smaller ending point, i.e., ```maxEnd``` is updated to ```min(maxEnd, intervals[i][1]);```
+- therefore the one remained is the one with smaller ending point, i.e., ```minEnd``` is updated to ```min(minEnd, interval[1]);```
+  
+  ![image](https://github.com/Nature711/data-structures-and-algos/assets/77217430/388a1559-0ce2-4214-9557-48fa1b755380)
+
 ```
-   public int eraseOverlapIntervals(int[][] intervals) {
-        Arrays.sort(intervals, (i1, i2) -> Integer.compare(i1[0], i2[0]));
-        int maxEnd = intervals[0][1];
-        int removeCount = 0;
-        for (int i = 1; i < intervals.length; i++) {
-            if (intervals[i][0] < maxEnd) {
-                removeCount++;
-                maxEnd = Math.min(maxEnd, intervals[i][1]);
-            } else {
-                maxEnd = intervals[i][1];
+    public int eraseOverlapIntervals(int[][] intervals) {
+        Arrays.sort(intervals, (i1, i2) -> (i1[0] - i2[0]));
+        int minEnd = Integer.MIN_VALUE, removalCount = 0;
+        for (int[] interval: intervals) {
+            if (interval[0] >= minEnd) { //no overlap
+                minEnd = interval[1]; //update minEnd
+                //no removal needed
+            } else { //overlap
+                minEnd = Math.min(interval[1], minEnd);
+                //remove the longer interval (either the one associated with current minEnd or the current interval)
+                removalCount++;
             }
         }
-        return removeCount;
+        return removalCount;
     }
 ```
 
