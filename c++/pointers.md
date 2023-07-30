@@ -56,3 +56,10 @@ cout << "Value at *ptr = " << *ptr << "\n";  //prints 20 (deferencing pointer to
   }
 ```
 ![image](https://github.com/Nature711/data-structures-and-algos/assets/77217430/e0550501-7ff2-42b9-881a-66a66ba95907)
+
+## Advanced Pointer Notation
+- pointer for 2D array
+- ```int nums[2][3]  =  { { 16, 18, 20 }, { 25, 26, 27 } };```
+- ```nums[ i ][ j ] is equivalent to *(*(nums+i)+j)```
+![image](https://github.com/Nature711/data-structures-and-algos/assets/77217430/292c7bb5-9b16-4586-8f87-43196fb6001a)
+
