@@ -91,6 +91,7 @@ HashMap<Integer, Integer> memo = new HashMap<>();
 - [Unique paths](https://github.com/Nature711/my-leetcode-notes/blob/master/0062-unique-paths/NOTES.md)
 - [House Robber](https://leetcode.com/problems/house-robber/)
 - [Coin Change](https://leetcode.com/problems/coin-change/)
+- [Edit Distance](https://github.com/Nature711/data-structures-and-algos/blob/master/common-problems/edit-distance.md)
 
 ## DP with array
 - usually, dp[i] represents some optimal (e.g., max product, min sum...) that is obtained from subarray 0...i
