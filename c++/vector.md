@@ -181,3 +181,131 @@ int main() {
     return 0;
 }
 ```
+
+## Passing vector to function
+
+### Pass by value
+- create a copy of the vector
+- the new copy is passed to function --> any changes made to the (new) vector in the function do not affect the original vector
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+// The vect here is a copy of vect in main()
+void func(vector<int> vect) { vect.push_back(30); }
+
+int main()
+{
+	vector<int> vect;
+	vect.push_back(10);
+	vect.push_back(20);
+
+	func(vect);
+
+	// vect remains unchanged after function call
+    //prints 10, 20
+	for (int i = 0; i < vect.size(); i++)
+		cout << vect[i] << " ";
+
+	return 0;
+}
+
+```
+### Pass by reference
+- referenced & original vector has the same address --> change to the original vector affects the new one
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+void func(vector<int>& vect) { vect.push_back(30); }
+
+int main()
+{
+	vector<int> vect;
+	vect.push_back(10);
+	vect.push_back(20);
+
+	func(vect);
+
+    //prints 10, 20, 30
+	for (int i = 0; i < vect.size(); i++)
+		cout << vect[i] << " ";
+
+	return 0;
+}
+```
+
+## Copy vector
+### Iterative method
+- use a loop to ```push_back()``` the old vector elements into the new vector
+- deep copy
+- change in the original vector doesn't affect the new copy
+```cpp
+// C++ code to demonstrate copy of vector
+// by iterative method.
+#include<iostream>
+#include<vector>
+using namespace std;
+
+int main()
+{
+	// Initializing vector with values
+	vector<int> vect1{1, 2, 3, 4};
+
+	// Declaring new vector
+	vector<int> vect2;
+
+	// A loop to copy elements of old vector into new vector iteratively
+	for (int i=0; i<vect1.size(); i++)
+		vect2.push_back(vect1[i]);
+
+	cout << "Old vector elements are : "; //prints 1,2,3,4
+	for (int i=0; i<vect1.size(); i++)
+		cout << vect1[i] << " ";
+	cout << endl;
+
+	cout << "New vector elements are : "; //prints 1,2,3,4
+	for (int i=0; i<vect2.size(); i++)
+		cout << vect2[i] << " ";
+	cout<< endl;
+
+	vect1[0] = 2;
+
+	cout << "The first element of old vector is :"; //prints 2
+	cout << vect1[0] << endl; 
+	cout << "The first element of new vector is :"; //prints 1
+	cout << vect2[0] <<endl;
+
+	return 0;
+}
+```
+
+### Assingment operator
+- same effect as copy constructor
+- independent copies --> change in one vector doesn't affect the other
+- note: assignment is not possible for arrays
+```cpp
+// Using assignment operator to copy one vector to other
+vect2 = vect1;
+
+vect1[0] = 2;
+
+cout << "The first element of old vector is :"; //prints 2
+cout << vect1[0] << endl;
+cout << "The first element of new vector is :"; //prints 1
+cout << vect2[0] <<endl;
+```
+
+### Pass into constructor
+- at the time of declaration of vector, passing an old initialized vector copies the elements of the passed vector into the newly declared vector
+- deep copy
+```cpp
+vector<int> vect2(vect1); 
+
+vect1[0] = 2; 
+
+cout << "The first element of old vector is :";  //prints 2
+cout << vect1[0] << endl; 
+cout << "The first element of new vector is :";  //prints 1
+cout << vect2[0] <<endl; 
+```
