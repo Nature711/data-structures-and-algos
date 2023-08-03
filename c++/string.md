@@ -45,6 +45,13 @@ int main() {
     std::string result = str1 + str2;
     std::cout << "Concatenated string: " << result << std::endl;
 
+    // Concatenate char to string
+    char c = 'a';
+    std::string result1 = result + c;
+
+    // Remove last char from string
+    result1.pop_back();
+
     // Length of the string
     std::cout << "Length of str1: " << str1.length() << std::endl;
 
@@ -75,4 +82,11 @@ int main() {
 
     return 0;
 }
+```
+
+## Notes
+- In C++ the double quotes are used as string literals, and single quote with one character is used as character literals.
+```
+string str = "This is a string";
+char c = 'T';
 ```
