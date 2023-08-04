@@ -59,7 +59,7 @@ int main() {
     char firstChar = str1[0];
     std::cout << "First character of str1: " << firstChar << std::endl;
 
-    // Substring
+    // Substring (string substr (size_t pos, size_t len) const; where pos is the pos of the first char, len is the length of substring)
     std::string substr = str1.substr(1, 3);
     std::cout << "Substring of str1: " << substr << std::endl;
 
