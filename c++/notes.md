@@ -16,6 +16,34 @@
       ...
   ```
 
+2. Usage of pointer to local variables
+- if we want to return a pointer (to some object) from a function, make sure to initialize the object using ```new``` keyword
+- dynamically allocating memory for the object on the heap
+- the object's memory will persist even after the scope in which it was created ends
+- you're responsible for explicitly releasing this memory using the ```delete``` keyword to avoid memory leaks
+  ```
+  TreeNode* helper(int low, int high) {
+      if (low == high) {
+          TreeNode* node = new TreeNode(low);
+          return node;
+      }
+  ```
+  
+  - wrong example:
+  ```
+  TreeNode* helper(int low, int high) {
+      if (low == high) {
+          TreeNode n = TreeNode(low);
+          return &n;
+      }
+  ```
+- we're creating the object on the stack --> it memory will be automatically deallocated when the variable goes out of scope
+- in this case the TreeNode ```n``` is a local variables within the scope of the if condition --> as soon as the scope, they get destroyed, and the addresses you return becomes invalid
+
+### Rule of thumb
+- use constructor directly whenever possible
+- use pointer only when dynamic allocation is necessary, or when you need objects with a longer lifetime that outlives the current scope
+
 ## Arrays
 1. Initializing fixed size array -- array size must be known at **compile time**
 ```
