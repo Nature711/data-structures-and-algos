@@ -113,3 +113,49 @@ public TreeNode insertIntoBST(TreeNode root, int val) {
     return root;
 }
 ```
+
+### A point to note on base case
+- this function returns a list of BST, each of which is constructed using all unique values in the range [low, high]
+- very tempting to write the base case as:
+  ```
+  if (low == high) {
+      res.add(new TreeNode(low));
+      return res;
+  }
+  ```
+  - consider calling ```helper(1, 2)```
+    - for ```i == 1``` --> recursively calls: 
+      - helper(1, 0) --> return an empty list (leftTrees)
+      - helper(2, 2) --> return a list with one node 2 (rightTrees)
+      - for each leftTree: leftTrees --> this part won't even run since leftTrees is an empty list
+      - nothing added to ```res```
+    - for ```i == 2``` --> recursively calls: 
+      - helper(1, 1) --> return a list with one node 1 (leftTrees)
+      - helper(3, 2) --> return an empty list (rightTrees)
+      - for each leftTree: leftTrees, for each rightTree: rightTrees --> won't run inner for loop since rightTrees is an empty list
+      - nothing added to ```res```
+     - finally we got nothing...
+ - thus we need to use ```if (low > high)``` to handle base case, and return a **list** containing a single null value (instead of just null!!!) so that both outer and inner for loop will run
+```
+public List<TreeNode> helper(int low, int high) {
+      List<TreeNode> res = new ArrayList<>();
+      if (low > high) {
+          res.add(null);
+          return res;
+      }
+
+      for (int i = low; i <= high; i++) {
+          List<TreeNode> leftTrees = helper(low, i - 1);
+          List<TreeNode> rightTrees = helper(i + 1, high);
+          for (TreeNode leftTree: leftTrees) {
+              for (TreeNode rightTree: rightTrees) {
+                  TreeNode root = new TreeNode(i);
+                  root.left = leftTree;
+                  root.right = rightTree;
+                  res.add(root);
+              }
+          }
+      }
+      return res;
+  }
+```
