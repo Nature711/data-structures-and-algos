@@ -94,6 +94,12 @@ int main() {
 }
 ```
 
+## 2D vectors
+- declares a 2D vector with m rows & n cols, initialize to 0
+```
+vector<vector<int>> vec(m, vector<int>(n, 0));
+```
+
 ## Notes
 ### ```push_back``` vs ```emplace_back```
 - ```push_back()```
