@@ -73,6 +73,7 @@ function visit(node n)
  
  ### Examples
  - [Course Schedule](https://github.com/Nature711/my-leetcode-notes/blob/master/0207-course-schedule/NOTES.md)
+ - [All Paths from Source Lead to Destination](https://leetcode.com/submissions/detail/1026624685/)
  
  ## Variant: Topological sort
  
