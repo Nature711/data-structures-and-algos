@@ -94,6 +94,14 @@ int main() {
 }
 ```
 
+## Initializing vector
+```cpp
+int m = 10, n = 5;
+vector<int> vect(n, 0); //initialize a vector of size 5, filled with 0
+
+vector<vector<int>> vect2(m, vector<int>(n, 1)); //initialize a 2d vector of size 10*5
+```
+
 ## 2D vectors
 - declares a 2D vector with m rows & n cols, initialize to 0
 ```
@@ -189,7 +197,6 @@ int main() {
 ```
 
 ## Passing vector to function
-
 ### Pass by value
 - create a copy of the vector
 - the new copy is passed to function --> any changes made to the (new) vector in the function do not affect the original vector
