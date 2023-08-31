@@ -322,3 +322,19 @@ cout << vect1[0] << endl;
 cout << "The first element of new vector is :";  //prints 1
 cout << vect2[0] <<endl; 
 ```
+
+## Sort
+- ascending
+```
+std::sort(myClassVector.begin(), myClassVector.end(), [](const MyClass &a, const MyClass &b)
+{ 
+    return a.property < b.property; 
+});
+```
+- descending
+```
+std::sort(myClassVector.begin(), myClassVector.end(), [](const MyClass &a, const MyClass &b)
+{ 
+    return a.property > b.property; 
+});
+```
