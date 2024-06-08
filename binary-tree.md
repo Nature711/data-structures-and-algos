@@ -106,3 +106,28 @@ void traverse(ListNode head) {
 ### Implications on writing code 
 - the code in the pre-order position can only obtain the data passed by the parent node from the function parameters
 - the code in the post-order position can not only obtain the parameter data, but also obtain the data passed back by the subtree through the function return value
+
+#### Example: Diameter of Binary Tree
+- Diameter of a binary tree (rooted at N) = maxDepth(N.left) + maxDepth(N.right)
+- Max diameter of a binary tree -- max diameter among all subtrees (including itself)
+```
+int maxDiameter = 0;
+    public int diameterOfBinaryTree(TreeNode root) {
+        maxDepth(root);
+        return maxDiameter;
+    }
+    int maxDepth(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+        int leftMax = maxDepth(root.left);
+        int rightMax = maxDepth(root.right);
+        // post-order
+        int myDiameter = leftMax + rightMax;
+        maxDiameter = Math.max(maxDiameter, myDiameter);
+
+        return 1 + Math.max(leftMax, rightMax);
+    }
+```
+- logic of calculating diameter of current tree is done in post-order position -- can make use of the return values of the subproblems (i.e., max depth of subtree)
+
