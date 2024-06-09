@@ -79,7 +79,9 @@ If so, write the definition of this recursive function and make full use of the 
 ## Deep understanding of pre/in/post-order 
 ![image](https://github.com/Nature711/data-structures-and-algos/assets/77217430/b36094f1-824e-417c-899b-2e6165671550)
 - pre-order: right before entering a node
+  - top-down processing
 - post-order: right after leaving a node
+  - bottom-up processing
 ![image](https://github.com/Nature711/data-structures-and-algos/assets/77217430/9912e147-1832-4e63-8b33-6c9a293eefac)
 
 Q: What does the following function do?
@@ -107,7 +109,8 @@ void traverse(ListNode head) {
 - the code in the pre-order position can only obtain the data passed by the parent node from the function parameters
 - the code in the post-order position can not only obtain the parameter data, but also obtain the data passed back by the subtree through the function return value
 
-#### Example: Diameter of Binary Tree
+## More examples
+### Diameter of Binary Tree
 - Diameter of a binary tree (rooted at N) = maxDepth(N.left) + maxDepth(N.right)
 - Max diameter of a binary tree -- max diameter among all subtrees (including itself)
 ```
@@ -131,3 +134,36 @@ int maxDiameter = 0;
 ```
 - logic of calculating diameter of current tree is done in post-order position -- can make use of the return values of the subproblems (i.e., max depth of subtree)
 
+### Invert Binary Tree
+### Recursion
+```
+public TreeNode invertTree(TreeNode root) {
+        if (root == null) return null;
+        
+        TreeNode leftInv = invertTree(root.left);
+        TreeNode rightInv = invertTree(root.right);
+        root.left = rightInv;
+        root.right = leftInv;
+        return root;
+    }
+```
+### Traversal
+```
+    public TreeNode invertTree(TreeNode root) {
+        traverse(root);
+        return root;
+    }
+    
+    public void traverse(TreeNode root) {
+        if (root == null) return;
+        TreeNode tmpLeft = root.left;
+        root.left = root.right;
+        root.right = tmpLeft;
+        // pre-order
+        traverse(root.left);
+        traverse(root.right);
+    }
+```
+- main logic can be placed in either pre or post-order position
+  - pre-order: top-down -- exchanging the entire left & right subtree first, then recursively going down
+  - post-order: bottom-up -- exchanging leaf nodes first, then going up to exchange the parent
