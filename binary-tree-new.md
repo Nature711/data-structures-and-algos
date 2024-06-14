@@ -135,7 +135,7 @@ int maxDiameter = 0;
 - logic of calculating diameter of current tree is done in post-order position -- can make use of the return values of the subproblems (i.e., max depth of subtree)
 
 ### Invert Binary Tree
-### Recursion
+#### Recursion
 ```
 public TreeNode invertTree(TreeNode root) {
         if (root == null) return null;
@@ -147,7 +147,7 @@ public TreeNode invertTree(TreeNode root) {
         return root;
     }
 ```
-### Traversal
+#### Traversal
 ```
     public TreeNode invertTree(TreeNode root) {
         traverse(root);
@@ -167,3 +167,64 @@ public TreeNode invertTree(TreeNode root) {
 - main logic can be placed in either pre or post-order position
   - pre-order: top-down -- exchanging the entire left & right subtree first, then recursively going down
   - post-order: bottom-up -- exchanging leaf nodes first, then going up to exchange the parent
+
+## Construction
+- common strategy: tree = construct root + construct left subtree (root.left) + construct right subtree (root.right)
+
+### Construct binary tree from traversal
+- requirements:
+  - all values in the tree are unique
+  - traversal doesn't include NULL values
+#### pre + in-order traversal
+- pre: root -> left -> right; in: left -> root -> right
+- first value in preorder -- root --> locate this value in inorder --> whatever to its left is left subtree, to its right is right subtree
+- by knowing the size of the left & right subtree --> know where the right subtree start from in preorder as well
+
+![image](https://github.com/Nature711/data-structures-and-algos/assets/77217430/5b8f1f65-b27b-41f7-b7b8-914d0c92f96a)
+![image](https://github.com/Nature711/data-structures-and-algos/assets/77217430/08a301e2-5f0c-41be-a385-64b1da956af3)
+
+```
+    HashMap<Integer, Integer> map = new HashMap<>();
+    public TreeNode buildTree(int[] preorder, int[] inorder) {
+        for (int i = 0; i < inorder.length; i++) map.put(inorder[i], i);
+        return build(preorder, inorder, 0, 0, inorder.length - 1);
+    }
+    
+    TreeNode build(int[] preorder, int[] inorder, int preLow, int inLow, int inHigh) {
+        if (inLow > inHigh) return null;
+        
+        int rootVal = preorder[preLow];
+        TreeNode root = new TreeNode(rootVal);
+        int inorderIdx = map.get(rootVal);
+        root.left = build(preorder, inorder, preLow + 1, inLow, inorderIdx - 1);
+        int leftTreeSize = inorderIdx - inLow;
+        root.right = build(preorder, inorder, preLow + leftTreeSize + 1, inorderIdx + 1, inHigh);
+        return root;
+    }
+```
+#### in + post-order traversal
+- in: left -> root -> right; post: left -> right -> root
+- last value in postorder -- root --> locate this value in inorder --> whatever to its left is left subtree, to its right is right subtree
+- by knowing the size of the left & right subtree --> know where the left subtree start from in postorder as well
+
+![image](https://github.com/Nature711/data-structures-and-algos/assets/77217430/713ee5d8-42ef-4f1d-bca8-58202d6f1e45)
+![image](https://github.com/Nature711/data-structures-and-algos/assets/77217430/b9900525-d738-48b0-8881-4edf7dc49e95)
+
+#### pre + post-order traversal
+- impossible -- unable to know the size of left & right subtree --> don't know where to recurse from
+  
+![image](https://github.com/Nature711/data-structures-and-algos/assets/77217430/6188330f-bef0-43f8-8e67-5061b3e5ce49)
+
+### Summary: using traversal to construct binary tree
+- if NULL values are NOT included in traversal && all values in the tree are unique
+  - pre + in-order, or
+  - in + post-order
+- if NULL values are included in traversal
+  - pre-order
+  - post-order
+  - level-order
+
+### Serialization
+- main challenge: deserialization (from string back to tree) -- to ensure uniqueness of result
+- based on the idea of using traversal to (uniquely) construct binary tree
+
