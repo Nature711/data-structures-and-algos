@@ -1,14 +1,62 @@
-## Definition
+# BST
 
+## Definition
 Binary Search Tree is a binary tree where the key in each node is 
 - greater than any key in the left sub-tree, and
 - less than any key in the right sub-tree
 
-## Traversal
-- **inorder** traversal (left -> root -> right) of BST yields an array **sorted in ascending order**
- - application: [Two Sum - Input as BST](https://leetcode.com/problems/two-sum-iv-input-is-a-bst/solution/)
+### In-order traversal of BST prints the values in sorted order (ascending)
+![image](https://github.com/Nature711/data-structures-and-algos/assets/77217430/db2e954d-3145-40fa-bc70-3bb3bff83ba3)
+- intuition behind
+  - In-order traversal: left -> root -> right
+  - BST: for each node N, all values in N.left are less than N.val; all values in N.right are greater than N.val -- N.val is in the middle
+- if we want the values to be in descending order, simply change the order of traversal to: right --> root --> left
+```
+// print the BST values in ascending order
+void traverse(TreeNode root) {
+    if (root == null) return;
+    traverse(root.left);
+    print(root.val);
+    traverse(root.right);
+}
 
-### [Sorted array to BST](https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/?envType=study-plan&id=level-2)
+// print the BST values in descending order
+void traverse(TreeNode root) {
+    if (root == null) return;
+    traverse(root.right);
+    print(root.val);
+    traverse(root.left);
+}
+```
+- interesting application: [Two Sum - Input as BST](https://leetcode.com/problems/two-sum-iv-input-is-a-bst/solution/)
+
+#### Convert BST to Greater Tree
+![image](https://github.com/Nature711/data-structures-and-algos/assets/77217430/db39ae34-9bcd-49ce-a8fe-ef4b69f302ae)
+
+- greatest element -- no element greater than it --> updated sum = original value + 0
+- elements in the middle --> updated sum = original value + sum of elements greater than it
+- traversing fromt the greastest element, keeping track of the sum of values seen so far, adding the sum to the next node 
+```
+TreeNode convertBST(TreeNode root) {
+    traverse(root);
+    return root;
+}
+
+int sum = 0;
+void traverse(TreeNode root) {
+    if (root == null) {
+        return;
+    }
+    traverse(root.right);
+    // update sum
+    sum += root.val;
+    // convert BST to GST
+    root.val = sum;
+    traverse(root.left);
+}
+```
+
+#### [Sorted array to BST](https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/?envType=study-plan&id=level-2)
 - find array mid --> set as root
 - recursively construct left and right subtree using elements to the left of mid and to the right of mid
 ```
@@ -26,7 +74,7 @@ public TreeNode helper(int[] nums, int low, int high) {
 }
 ```
 
-### [K-th smallest element in BST](https://leetcode.com/problems/kth-smallest-element-in-a-bst/?envType=study-plan&id=level-2)
+#### [K-th smallest element in BST](https://leetcode.com/problems/kth-smallest-element-in-a-bst/?envType=study-plan&id=level-2)
 ```
  int res = -1, count;
  public int kthSmallest(TreeNode root, int k) {
@@ -46,6 +94,15 @@ public TreeNode helper(int[] nums, int low, int high) {
 
 
 # Operations
+- basic framework:
+  1. find the desired node (to be inserted / deleted)
+  2. perform the operation (no-op in the case of just searching)
+- practice recursive mindset: instead of maintaining 2 pointers (one to the current position at which op is going to be performed,
+the other to the parent of the current pos), by having the recursive function returning the root of the subtree containing the modification,
+we then just need to perform necessary changes on the current root to link it to the subtree
+  - insertion base case: reaching null --> return a new node with the value to be inserted -- recursion process will take care of connecting this node properly to its parent
+  - deletion base case: reaching the node to be deleted --> 3 cases: node has no child, 1 child, or 2 chilren -- take care of them differently, return the new root after change
+  
 ## Search
 
 - Time complexity: O(H) 
@@ -80,9 +137,7 @@ public TreeNode searchBST(TreeNode root, int val) {
 - recursive:
 ```
   public TreeNode insertIntoBST(TreeNode root, int val) {
-      TreeNode newNode = new TreeNode(val);
-
-      if (root == null) return newNode;
+      if (root == null) return new TreeNode(val);
 
       if (val > root.val) root.right = insertIntoBST(root.right, val);
       else root.left = insertIntoBST(root.left, val);
@@ -113,6 +168,33 @@ public TreeNode insertIntoBST(TreeNode root, int val) {
     return root;
 }
 ```
+## Deletion
+- Time complexity: same as search
+  
+- recursive:
+```
+ public TreeNode deleteNode(TreeNode root, int key) {
+      if (root == null) return root;
+
+        if (root.val == key) {
+               if (root.left == null && root.right == null) return null;
+                if (root.left == null && root.right != null) return root.right;
+                if (root.left != null && root.right == null) return root.left;
+
+                TreeNode newRoot = root.left;
+                TreeNode pos = newRoot;
+                while (pos.right != null) pos = pos.right;
+                pos.right = root.right;
+                return newRoot;
+
+        }
+
+        if (root.val < key) root.right = deleteNode(root.right, key);
+        else root.left = deleteNode(root.left, key);
+        return root;
+}
+```
+- iterative: code is too nasty, check [here](https://leetcode.com/submissions/detail/1292999712/)
 
 ### A point to note on base case
 - this function returns a list of BST, each of which is constructed using all unique values in the range [low, high]
