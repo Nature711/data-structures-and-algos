@@ -1,8 +1,13 @@
 # Overview
 
+## Intro
+- core problem: finding extreme value (min / max)
+- how: exhaustive enumeration (of all feasible solution to find the extrema)
+
 ## Problem feature
 - **optimal substructure** -- optimal solution of the current problem is based on the optimal solution to the subproblems
 - **overlapping subproblem** -- solutions to the subproblems are reused during computation of many "bigger" problems
+- **state transition** 
 
 ## Common approach
 - define dp array 
