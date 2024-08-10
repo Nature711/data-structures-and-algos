@@ -62,7 +62,7 @@
             else left = mid;
         }
         // at this point, low == high
-        return nums[mid] == low ? low : -1;
+        return nums[low] == target ? low : -1;
     }
 ```
 
@@ -177,4 +177,26 @@ public int findMinIndex(int[] nums) {
     }
     return -1;
 }
+```
+
+### Application: Patience sorting; finding LIS
+```
+public int lengthOfLIS(int[] nums) {
+        int[] decks = new int[nums.length];
+        int numDecks = 0;
+        for (int num: nums) {
+            int low = 0, high = numDecks; 
+            while (low < high) { // find the leftmost element whose >= num
+                int mid = low + (high - low) / 2;
+                if (decks[mid] >= num) high = mid;
+                else low = mid + 1;
+            }
+            if (decks[low] >= num) decks[low] = num;
+            else {
+                decks[numDecks] = num;
+                numDecks++;
+            }
+        }
+        return numDecks;
+    }
 ```
