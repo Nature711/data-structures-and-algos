@@ -184,9 +184,18 @@ for (int i = n - 1; i >= 0; i--) {
 
 - related question: [number of ways of cutting a pizza](https://leetcode.com/problems/number-of-ways-of-cutting-a-pizza/)
 
-### A note on base case for string-related problems
+## A note on base case for string-related problems
+### Size of dp memo 
  - typical case: 2 strings s1, s2, of length m, n, respectively
  - define int[][] dp = new int[m + 1][n + 1] -- need to account for the base case of empty string (i.e., dp[0][0])
  - dp[i][j]: some optimal property using s1[0...i - 1], s2[0...j - 1] -- index shift by 1
  - solution to the original problem: dp[m][n]
  - example: [Longest Common Subsequence](https://leetcode.com/problems/longest-common-subsequence/)
+### Initialization of base case
+- typical loop structure: `for (i = 1; i <= m; i++) { for (j = 1; j <= n; j++) } ...`
+- when `i == 1`, for each j, we may need to query `dp[0][j]` (for non-zero j)
+- for each i, when `j == 1`, we may need to queyr `dp[i][0]` (for non-zero i)
+- it's not enough to just initialize the base case `dp[0][0]`; in fact, for all i, `dp[i][0]` is a base case; for all j, `dp[0][j]` is a base case
+- what those base cases mean: the solution to the subproblem when one of the string is empty -- trivial, but must be initialized!
+- example: [Edit Distance](https://leetcode.com/problems/edit-distance/)
+- 
