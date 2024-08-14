@@ -184,3 +184,9 @@ for (int i = n - 1; i >= 0; i--) {
 
 - related question: [number of ways of cutting a pizza](https://leetcode.com/problems/number-of-ways-of-cutting-a-pizza/)
 
+### A note on base case for string-related problems
+ - typical case: 2 strings s1, s2, of length m, n, respectively
+ - define int[][] dp = new int[m + 1][n + 1] -- need to account for the base case of empty string (i.e., dp[0][0])
+ - dp[i][j]: some optimal property using s1[0...i - 1], s2[0...j - 1] -- index shift by 1
+ - solution to the original problem: dp[m][n]
+ - example: [Longest Common Subsequence](https://leetcode.com/problems/longest-common-subsequence/)
