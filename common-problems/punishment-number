@@ -1,0 +1,59 @@
+
+# [Find the Punishment Number of an Integer](https://leetcode.com/problems/find-the-punishment-number-of-an-integer/description/?envType=daily-question&envId=2025-02-15)
+- related topics: recursion (divide n conquer), memoization, dp
+## Recursion (without memo)
+```
+class Solution {
+    public int punishmentNumber(int n) {
+        int res = 0;
+        for (int i = 1; i <= n; i++) {
+            if (isPunishment(i)) res += i * i;
+        }
+        return res;
+    }
+
+    boolean isPunishment(int n) {
+        int square = n * n;
+        List<Integer> digitList = new ArrayList<>();
+        while (square > 0) {
+            int digit = square % 10;
+            square /= 10;
+            digitList.add(digit);
+        }
+        Collections.reverse(digitList);
+        List<String> partitions = generatePartitions(digitList, 0, digitList.size() - 1);
+        for (String partition: partitions) {
+            String[] parts = partition.split(",");
+            int sum = 0;
+            for (String p: parts) {
+                sum += Integer.valueOf(p);
+            }
+            if (sum == n) return true;
+        }
+        return false;
+    }
+
+    List<String> generatePartitions(List<Integer> digitList, int start, int end) {
+        int mid = (end - start) / 2;
+        List<String> res = new ArrayList<>();
+        if (start > end) {
+            res.add("");
+            return res;
+        }
+        if (start == end) {
+            res.add(Integer.toString(digitList.get(start)));
+            return res;
+        }
+        List<String> part1 = generatePartitions(digitList, start, mid);
+        List<String> part2 = generatePartitions(digitList, mid + 1, end);
+        
+        for (String sp1: part1) {
+            for (String sp2: part2) {
+                res.add(sp1 + sp2);
+                res.add(sp1 + "," + sp2);
+            }
+        }
+        return res;
+    }
+}
+```
